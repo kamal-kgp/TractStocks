@@ -21,7 +21,7 @@ const menuStyle = {
 function App() {
   const [actTab, setActTab] = useState("chart");
   const [data, setData] = useState({});
-  // const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(false);
 
   const options = {
     method: "POST",
@@ -36,11 +36,10 @@ function App() {
 
   const fetchData = async () => {
     try {
-      // setFetching(true);
+      setFetching(true);
       const response = await axios.request(options);
-      // console.log(response.data);
       setData(response.data);
-      // setFetching(false);
+      setFetching(false);
     } catch (error) {
       console.error(error);
     }
@@ -51,6 +50,7 @@ function App() {
   }, []);
 
   return (
+    fetching ? <div style={{ width: "100%", height: "100%", textAlign: "center", fontFamily: "sans-serif", fontSize: "25px", fontWeight: "600", lineHeight: "25px", marginTop: "300px"}}>Loading...</div> :
     <div
       style={{
         display: "flex",

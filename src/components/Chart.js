@@ -35,7 +35,6 @@ const Chart = () => {
       }
       setData(res);
       setFetching(false);
-      console.log(res);
     } catch (error) {
       console.error(error);
     }
