@@ -39,55 +39,55 @@ const Statistics = ({data}) => {
       <div style={innerContainerStyle}>
         <div style={fieldStyle}>
           <span style={labelStyle}>52 Week Low :</span>
-          <span style={valueStyle}>{data.fiftyTwoWeekLow}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.fiftyTwoWeekLow?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>52 Week High :</span>
-          <span style={valueStyle}> {data.fiftyTwoWeekHigh} </span>
+          <span style={valueStyle}>{data?.summaryDetail?.fiftyTwoWeekHigh?.fmt} </span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>50 Day Average :</span>
-          <span style={valueStyle}>{data.fiftyDayAverage}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.fiftyDayAverage?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>200 Day Average :</span>
-          <span style={valueStyle}>{data.twoHundredDayAverage}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.twoHundredDayAverage?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Dividend Rate:</span>
-          <span style={valueStyle}>{data.dividendRate}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.dividendRate?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Dividend Yield:</span>
-          <span style={valueStyle}>{data.dividendYield}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.dividendYield?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>exDividend Date:</span>
-          <span style={valueStyle}>{data.exDividendDate}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.exDividendDate?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Payout Ratio:</span>
-          <span style={valueStyle}>{data.payoutRatio}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.payoutRatio?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>5 Year Avg Dividend Yield:</span>
-          <span style={valueStyle}>{data.fiveYearAvgDividendYield}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.fiveYearAvgDividendYield?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Beta :</span>
-          <span style={valueStyle}>{data.beta}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.beta?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Trailing PE :</span>
-          <span style={valueStyle}>{data.trailingPE}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.trailingPE?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Forward PE :</span>
-          <span style={valueStyle}>{data.forwardPE}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.forwardPE?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Market Cap :</span>
-          <span style={valueStyle}>{data.marketCap}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.marketCap?.longFmt} ({data?.summaryDetail?.marketCap?.fmt})</span>
         </div>
       </div>
     </div>

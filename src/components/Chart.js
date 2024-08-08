@@ -6,22 +6,30 @@ import fullscreen from "../assets/fullscreen.svg";
 import compare from "../assets/compare.svg";
 
 const Chart = () => {
-  const [time, setTime] = useState("7d");
+  const [time, setTime] = useState("5d");
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(false);
   const chartRef = useRef(null);
+  const [interval, setInterval] = useState("1d");
+
+  const apiKey = process.env.REACT_APP_API_KEY; 
 
   const options1 = {
-    method: "POST",
-    url: "https://yahoo-finance160.p.rapidapi.com/history",
-    headers: {
-      "x-rapidapi-key": "e3b05c6416msh749c9c1fe84d491p133551jsn0a8f46ef5ee8",
-      "x-rapidapi-host": "yahoo-finance160.p.rapidapi.com",
-      "Content-Type": "application/json",
+    method: "GET",
+    url: "https://yh-finance.p.rapidapi.com/stock/v3/get-chart",
+    params: {
+      interval: interval,
+      symbol: "MSFT",
+      range: time,
+      region: "US",
+      includePrePost: "false",
+      useYfid: "true",
+      includeAdjustedClose: "true",
+      events: "capitalGain,div,split",
     },
-    data: {
-      stock: "MSFT",
-      period: time,
+    headers: {
+      "x-rapidapi-key": apiKey,
+      "x-rapidapi-host": "yh-finance.p.rapidapi.com",
     },
   };
 
@@ -29,10 +37,7 @@ const Chart = () => {
     try {
       setFetching(true);
       const response = await axios.request(options1);
-      let res = [] ;
-      for(let i=0; i<response.data.records.length; i++){
-          res.push(parseInt(response.data.records[i].Open)) ;
-      }
+      const res = response.data.chart.result[0].indicators.adjclose[0].adjclose;
       setData(res);
       setFetching(false);
     } catch (error) {
@@ -40,9 +45,9 @@ const Chart = () => {
     }
   };
 
-    useEffect(() => {
-      fetchData();
-    }, [time]);
+  useEffect(() => {
+    fetchData();
+  }, [time, interval]);
 
   const handleFullscreen = () => {
     const chartContainer = chartRef.current;
@@ -111,8 +116,8 @@ const Chart = () => {
             y2: 1,
           },
           stops: [
-            [0, "#E8E7FF"], 
-            [1, "rgba(255, 255, 255, 0)"], 
+            [0, "#E8E7FF"],
+            [1, "rgba(255, 255, 255, 0)"],
           ],
         },
         marker: {
@@ -254,29 +259,25 @@ const Chart = () => {
               color: time === "1d" ? "#FFFFFF" : "#6F7177",
               backgroundColor: time === "1d" ? "#4B40EE" : "#FFFFFF",
             }}
-            onClick={() => setTime("1d")}
+            onClick={() => {
+              setTime("1d");
+              setInterval("5m");
+            }}
           >
             1d
           </span>
           <span
             style={{
               ...timeStyle,
-              color: time === "3d" ? "#FFFFFF" : "#6F7177",
-              backgroundColor: time === "3d" ? "#4B40EE" : "#FFFFFF",
+              color: time === "5d" ? "#FFFFFF" : "#6F7177",
+              backgroundColor: time === "5d" ? "#4B40EE" : "#FFFFFF",
             }}
-            onClick={() => setTime("3d")}
-          >
-            3d
-          </span>
-          <span
-            style={{
-              ...timeStyle,
-              color: time === "7d" ? "#FFFFFF" : "#6F7177",
-              backgroundColor: time === "7d" ? "#4B40EE" : "#FFFFFF",
+            onClick={() => {
+              setTime("5d");
+              setInterval("1d");
             }}
-            onClick={() => setTime("7d")}
           >
-            1w
+            5d
           </span>
           <span
             style={{
@@ -284,9 +285,25 @@ const Chart = () => {
               color: time === "1mo" ? "#FFFFFF" : "#6F7177",
               backgroundColor: time === "1mo" ? "#4B40EE" : "#FFFFFF",
             }}
-            onClick={() => setTime("1mo")}
+            onClick={() => {
+              setTime("1mo");
+              setInterval("1d");
+            }}
           >
             1m
+          </span>
+          <span
+            style={{
+              ...timeStyle,
+              color: time === "3mo" ? "#FFFFFF" : "#6F7177",
+              backgroundColor: time === "3mo" ? "#4B40EE" : "#FFFFFF",
+            }}
+            onClick={() => {
+              setTime("3mo");
+               setInterval("1d");
+            }}
+          >
+            3m
           </span>
           <span
             style={{
@@ -294,7 +311,10 @@ const Chart = () => {
               color: time === "6mo" ? "#FFFFFF" : "#6F7177",
               backgroundColor: time === "6mo" ? "#4B40EE" : "#FFFFFF",
             }}
-            onClick={() => setTime("6mo")}
+            onClick={() => {
+              setTime("6mo");
+               setInterval("1wk");
+            }}
           >
             6m
           </span>
@@ -304,7 +324,10 @@ const Chart = () => {
               color: time === "1y" ? "#FFFFFF" : "#6F7177",
               backgroundColor: time === "1y" ? "#4B40EE" : "#FFFFFF",
             }}
-            onClick={() => setTime("1y")}
+            onClick={() => {
+              setTime("1y");
+            setInterval("1wk");
+            }}
           >
             1y
           </span>
@@ -314,7 +337,10 @@ const Chart = () => {
               color: time === "max" ? "#FFFFFF" : "#6F7177",
               backgroundColor: time === "max" ? "#4B40EE" : "#FFFFFF",
             }}
-            onClick={() => setTime("max")}
+            onClick={() => {
+              setTime("max");
+            setInterval("1mo");
+            }}
           >
             max
           </span>
@@ -330,7 +356,13 @@ const Chart = () => {
           marginTop: "35px",
         }}
       >
-        {fetching ? <div style={{ width: "100%", height: "100%", textAlign: "center" }}>Loading...</div> : <HighchartsReact highcharts={Highcharts} options={options} />}
+        {fetching ? (
+          <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
+            Loading...
+          </div>
+        ) : (
+          <HighchartsReact highcharts={Highcharts} options={options} />
+        )}
       </div>
     </div>
   );

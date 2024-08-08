@@ -23,15 +23,19 @@ function App() {
   const [data, setData] = useState({});
   const [fetching, setFetching] = useState(false);
 
+  const apiKey = process.env.REACT_APP_API_KEY;
+
   const options = {
-    method: "POST",
-    url: "https://yahoo-finance160.p.rapidapi.com/info",
-    headers: {
-      "x-rapidapi-key": "e3b05c6416msh749c9c1fe84d491p133551jsn0a8f46ef5ee8",
-      "x-rapidapi-host": "yahoo-finance160.p.rapidapi.com",
-      "Content-Type": "application/json",
+    method: 'GET',
+    url: 'https://yh-finance.p.rapidapi.com/stock/v2/get-analysis',
+    params: {
+      symbol: 'MSFT',
+      region: 'US'
     },
-    data: { stock: "MSFT" },
+    headers: {
+      'x-rapidapi-key': apiKey,
+      'x-rapidapi-host': 'yh-finance.p.rapidapi.com'
+    }
   };
 
   const fetchData = async () => {
@@ -90,7 +94,7 @@ function App() {
               display: "flex",
             }}
           >
-            {data?.currentPrice}
+            {data?.financialData?.currentPrice?.fmt}
             <span
               style={{
                 width: "49px",
@@ -123,10 +127,10 @@ function App() {
               fontWeight: "400",
               lineHeight: "22.77px",
               textAlign: "left",
-              color: data?.currentPrice - data?.open >= 0 ? "#67BF6B" : "red",
+              color: data?.financialData?.currentPrice?.fmt - data?.summaryDetail?.open?.fmt >= 0 ? "#67BF6B" : "red",
             }}
           >
-            {(data?.currentPrice - data?.open).toFixed(2)} ({((data?.currentPrice - data?.open)/data?.open).toFixed(2)*100}%) 
+            {(data?.financialData?.currentPrice?.fmt - data?.summaryDetail?.open?.fmt).toFixed(2)} ({((data?.financialData?.currentPrice?.fmt - data?.summaryDetail?.open?.fmt)/data?.summaryDetail?.open?.fmt).toFixed(4)*100}%) 
           </p>
         </div>
         <div

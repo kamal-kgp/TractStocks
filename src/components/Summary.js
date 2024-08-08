@@ -38,32 +38,36 @@ const Summary = ({data}) => {
     <div style={containerStyle}>
       <div style={innerContainerStyle}>
         <div style={fieldStyle}>
-          <span style={labelStyle}>Website:</span>
-          <span style={valueStyle}>{data.website}</span>
-        </div>
-        <div style={fieldStyle}>
-          <span style={labelStyle}>Stock name:</span>
+          <span style={labelStyle}>Symbol :</span>
           <span style={valueStyle}>MSFT</span>
         </div>
         <div style={fieldStyle}>
-          <span style={labelStyle}>Industry:</span>
-          <span style={valueStyle}>{data.industry}</span>
+          <span style={labelStyle}>Open :</span>
+          <span style={valueStyle}>{data?.summaryDetail?.open?.fmt}</span>
         </div>
         <div style={fieldStyle}>
-          <span style={labelStyle}>Sector:</span>
-          <span style={valueStyle}>{data.sector}</span>
+          <span style={labelStyle}>Day Low :</span>
+          <span style={valueStyle}>{data?.summaryDetail?.dayLow?.fmt}</span>
         </div>
         <div style={fieldStyle}>
-          <span style={labelStyle}>Full time employee:</span>
-          <span style={valueStyle}>{data.fullTimeEmployees}</span>
+          <span style={labelStyle}>Day High :</span>
+          <span style={valueStyle}>{data?.summaryDetail?.dayHigh?.fmt}</span>
+        </div>
+        <div style={fieldStyle}>
+          <span style={labelStyle}>Regular Market Day low :</span>
+          <span style={valueStyle}>{data?.summaryDetail?.regularMarketDayLow?.fmt}</span>
+        </div>
+        <div style={fieldStyle}>
+          <span style={labelStyle}>Regular Market Day high :</span>
+          <span style={valueStyle}>{data?.summaryDetail?.regularMarketDayHigh?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Current Price:</span>
-          <span style={valueStyle}>{data.currentPrice}</span>
+          <span style={valueStyle}>{data?.financialData?.currentPrice?.fmt}</span>
         </div>
         <div style={fieldStyle}>
           <span style={labelStyle}>Volume:</span>
-          <span style={valueStyle}>{data.volume}</span>
+          <span style={valueStyle}>{data?.summaryDetail?.volume?.longFmt}</span>
         </div>
       </div>
     </div>
