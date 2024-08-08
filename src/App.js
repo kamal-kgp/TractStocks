@@ -27,14 +27,14 @@ function App() {
 
   const options = {
     method: 'GET',
-    url: 'https://yh-finance.p.rapidapi.com/stock/v2/get-analysis',
+    url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-analysis',
     params: {
       symbol: 'MSFT',
       region: 'US'
     },
     headers: {
       'x-rapidapi-key': apiKey,
-      'x-rapidapi-host': 'yh-finance.p.rapidapi.com'
+      'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
     }
   };
 

@@ -12,11 +12,11 @@ const Chart = () => {
   const chartRef = useRef(null);
   const [interval, setInterval] = useState("1d");
 
-  const apiKey = process.env.REACT_APP_API_KEY; 
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const options1 = {
     method: "GET",
-    url: "https://yh-finance.p.rapidapi.com/stock/v3/get-chart",
+    url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-chart',
     params: {
       interval: interval,
       symbol: "MSFT",
@@ -28,8 +28,8 @@ const Chart = () => {
       events: "capitalGain,div,split",
     },
     headers: {
-      "x-rapidapi-key": apiKey,
-      "x-rapidapi-host": "yh-finance.p.rapidapi.com",
+      'x-rapidapi-key': apiKey,
+      'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
     },
   };
 
