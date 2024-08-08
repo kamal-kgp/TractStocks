@@ -1,4 +1,4 @@
-import react, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import axios from "axios";

@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import Analysis from "./components/Analysis";
@@ -14,7 +14,6 @@ const menuStyle = {
   fontSize: "18px",
   fontWeight: "400",
   lineHeight: "22.77px",
-  textAlign: "left",
   cursor: "pointer",
   textAlign: "center",
 };
@@ -135,7 +134,6 @@ function App() {
           style={{
             width: "880px",
             height: "43px",
-            gap: "0px",
             opacity: "0px",
             marginTop: "40px",
             borderBottom: "1px solid #EFF1F3",
