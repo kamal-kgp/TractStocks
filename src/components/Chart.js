@@ -12,8 +12,6 @@ const Chart = () => {
   const chartRef = useRef(null);
   const [interval, setInterval] = useState("1d");
 
-  const apiKey = process.env.REACT_APP_API_KEY;
-
   const options1 = {
     method: "GET",
     url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v3/get-chart',
@@ -28,7 +26,7 @@ const Chart = () => {
       events: "capitalGain,div,split",
     },
     headers: {
-      'x-rapidapi-key': apiKey,
+      'x-rapidapi-key': 'b4d65265d9msha693a38b3747b6cp1982acjsnf8e66503d15b',
       'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
     },
   };

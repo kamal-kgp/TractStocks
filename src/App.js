@@ -22,9 +22,7 @@ function App() {
   const [actTab, setActTab] = useState("chart");
   const [data, setData] = useState({});
   const [fetching, setFetching] = useState(false);
-
-  const apiKey = process.env.REACT_APP_API_KEY;
-
+  
   const options = {
     method: 'GET',
     url: 'https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-analysis',
@@ -33,7 +31,7 @@ function App() {
       region: 'US'
     },
     headers: {
-      'x-rapidapi-key': apiKey,
+      'x-rapidapi-key': 'b4d65265d9msha693a38b3747b6cp1982acjsnf8e66503d15b',
       'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
     }
   };
